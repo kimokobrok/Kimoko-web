@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KimoKoBrok | Anime Content Creator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                  url('https://i.imgur.com/IqnMOke.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .profile-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;          /* reduced bottom margin since name is now below */
+      position: relative;
+      background: #000;
+    }
+
+    .profile-circle img {
+      width: 92%;
+      height: 92%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* Rainbow border layers */
+    .profile-circle::before,
+    .profile-circle::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from var(--angle, 0deg),
+        #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff00aa, #ff0000
+      );
+      -webkit-mask: 
+        radial-gradient(circle at center, transparent 82px, black 86px);
+      mask: 
+        radial-gradient(circle at center, transparent 82px, black 86px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .profile-circle::before {
+      animation: spin 5s linear infinite;
+    }
+
+    .profile-circle::after {
+      animation: spin 7s linear reverse infinite;
+      opacity: 0.85;
+      filter: blur(1px);
+    }
+
+    @keyframes spin {
+      to {
+        --angle: 360deg;
+      }
+    }
+
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 10px 0 25px 0;
+      font-weight: bold;
+      background: linear-gradient(
+        90deg,
+        #ff69b4, palevioletred, yellow, white, #ff69b4
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 12px rgba(255, 105, 180, 0.7);
+      animation: rainbowShift 8s linear infinite;
+      letter-spacing: 1px;
+      background-size: 200% auto;
+    }
+
+    @keyframes rainbowShift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    p.tagline {
+      font-size: 1.3em;
+      margin-bottom: 40px;
+      opacity: 0.95;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50px;
+      padding: 16px 30px;
+      font-size: 1.2em;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 105, 180, 0.3);
+      border-color: #ff69b4;
+      box-shadow: 0 10px 20px rgba(255, 105, 180, 0.5);
+    }
+
+    .social-btn img {
+      width: 32px;
+      height: 32px;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-circle">
+      <img src="https://i.postimg.cc/XpG8bxVM/Screenshot-2026-0131-185022.png" alt="KimoKoBrok Profile Picture">
+    </div>
+
+    <h1>KimoKoBrok</h1>
+
+    <p class="tagline">Hi, my name is Kimokobrok. I love doing relatable/meme and Romance/Anime related content, and I really love romance anime and a little bit of other anime as well, not just romance. if you like my content Please support me with a follow ❤️</p>
+
+    <div class="social-links">
+      <a href="https://discord.gg/s6CSMt44aA" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord">
+        Join Discord Community (Kimoko Brook's Community)
+      </a>
+      
+      <a href="https://youtube.com/@kimokobrok" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+        YouTube @KimoKoBrok
+      </a>
+
+      <a href="https://www.tiktok.com/@kimokobrok" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/tiktok.png" alt="TikTok">
+        TikTok @KimoKoBrok
+      </a>
+
+      <a href="https://www.instagram.com/kimokobrook/" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/fluency/48/000000/instagram-new.png" alt="Instagram">
+        Instagram @kimokobrook
+      </a>
+
+      <a href="https://www.snapchat.com/add/kimokobrok" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/snapchat.png" alt="Snapchat">
+        Snapchat @kimokobrok
+      </a>
+
+      <a href="https://www.facebook.com/bailey.torresuroza" class="social-btn" target="_blank">
+        <img src="https://img.icons8.com/fluency/48/000000/facebook-new.png" alt="Facebook">
+        Facebook Kimoko Brok (Dum Dum)
+      </a>
+    </div>
+
+    <footer>
+      Made Dxrom for Kimokobrok anime content creator
+    </footer>
+  </div>
+</body>
+</html>
