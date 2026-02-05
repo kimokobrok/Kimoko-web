@@ -17,7 +17,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
     }
+
     .container {
       text-align: center;
       padding: 40px 20px;
@@ -26,14 +28,18 @@
       border-radius: 20px;
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
+      width: 100%; /* Ensure full width on small screens */
+      box-sizing: border-box;
     }
 
     .profile-circle {
+      --border-thickness: 8px;
+      --border-offset: 4px;
       width: 180px;
       height: 180px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 0 auto 20px;          /* reduced bottom margin since name is now below */
+      margin: 0 auto 20px;
       position: relative;
       background: #000;
     }
@@ -51,21 +57,20 @@
       z-index: 2;
     }
 
-    /* Rainbow border layers */
     .profile-circle::before,
     .profile-circle::after {
       content: "";
       position: absolute;
-      inset: -4px;
+      inset: calc(-1 * (var(--border-thickness) + var(--border-offset)));
       border-radius: 50%;
       background: conic-gradient(
         from var(--angle, 0deg),
         #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff00aa, #ff0000
       );
       -webkit-mask: 
-        radial-gradient(circle at center, transparent 82px, black 86px);
+        radial-gradient(circle at center, transparent calc(50% - var(--border-thickness)), black calc(50% - var(--border-thickness) + 1px));
       mask: 
-        radial-gradient(circle at center, transparent 82px, black 86px);
+        radial-gradient(circle at center, transparent calc(50% - var(--border-thickness)), black calc(50% - var(--border-thickness) + 1px));
       pointer-events: none;
       z-index: 1;
     }
@@ -121,7 +126,6 @@
       opacity: 0.95;
     }
 
-    /* Optional: make the bear hug emoji align nicely with text */
     .tagline img {
       width: 1.4em;
       height: 1.4em;
@@ -149,6 +153,8 @@
       color: white;
       text-decoration: none;
       transition: all 0.3s ease;
+      width: 100%; /* Make buttons full width to prevent overflow */
+      box-sizing: border-box;
     }
 
     .social-btn:hover {
@@ -161,6 +167,67 @@
     .social-btn img {
       width: 32px;
       height: 32px;
+    }
+
+    .discord-gif   { width: 48px !important; height: 48px !important; }
+    .youtube-gif   { width: 40px !important; height: 40px !important; }
+    .tiktok-gif    { width: 66px !important; height: 66px !important; }
+    .instagram-gif { width: 44px !important; height: 44px !important; }
+    .snapchat-gif  { width: 80px !important; height: 80px !important; }
+    .facebook-gif  { width: 38px !important; height: 38px !important; }
+
+    .discord-btn {
+      padding: 20px 40px !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .youtube-btn {
+      padding: 10px 42px !important;
+    }
+
+    .tiktok-btn {
+      padding: 4px 44px !important;
+    }
+
+    .instagram-btn {
+      padding: 14px 38px !important;
+    }
+
+    .snapchat-btn {
+      padding: 1px 30px !important;
+    }
+
+    .facebook-btn {
+      padding: 19px 39px !important;
+    }
+
+    /* Media query for small screens to adjust large GIFs and padding */
+    @media (max-width: 480px) {
+      .social-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+        gap: 10px;
+      }
+
+      .discord-gif   { width: 40px !important; height: 40px !important; }
+      .youtube-gif   { width: 32px !important; height: 32px !important; }
+      .tiktok-gif    { width: 50px !important; height: 50px !important; }
+      .instagram-gif { width: 36px !important; height: 36px !important; }
+      .snapchat-gif  { width: 60px !important; height: 60px !important; }
+      .facebook-gif  { width: 30px !important; height: 30px !important; }
+
+      .profile-circle {
+        width: 150px;
+        height: 150px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p.tagline {
+        font-size: 1.1em;
+      }
     }
 
     footer {
@@ -184,33 +251,33 @@
     </p>
 
     <div class="social-links">
-      <a href="https://discord.gg/s6CSMt44aA" class="social-btn" target="_blank">
-        <img src="https://cdn3.emoji.gg/emojis/6889-blob-holding-discord.gif" alt="Discord">
+      <a href="https://discord.gg/s6CSMt44aA" class="social-btn discord-btn" target="_blank">
+        <img src="https://cdn3.emoji.gg/emojis/6889-blob-holding-discord.gif" alt="Discord" class="discord-gif">
         Join Discord Community (Kimoko Brook's Community)
       </a>
       
-      <a href="https://youtube.com/@kimokobrok" class="social-btn" target="_blank">
-        <img src="https://emoji.discadia.com/emojis/8c580b06-dd3c-4c1e-9856-9e3f6c6eaeb3.gif" alt="YouTube">
+      <a href="https://youtube.com/@kimokobrok" class="social-btn youtube-btn" target="_blank">
+        <img src="https://emoji.discadia.com/emojis/8c580b06-dd3c-4c1e-9856-9e3f6c6eaeb3.gif" alt="YouTube" class="youtube-gif">
         YouTube @KimoKoBrok
       </a>
 
-      <a href="https://www.tiktok.com/@kimokobrok" class="social-btn" target="_blank">
-        <img src="https://emoji.discadia.com/emojis/8c7b3f40-a59f-4701-b77b-36141b9b3de4.gif" alt="TikTok">
+      <a href="https://www.tiktok.com/@kimokobrok" class="social-btn tiktok-btn" target="_blank">
+        <img src="https://emoji.discadia.com/emojis/8c7b3f40-a59f-4701-b77b-36141b9b3de4.gif" alt="TikTok" class="tiktok-gif">
         TikTok @KimoKoBrok
       </a>
 
-      <a href="https://www.instagram.com/kimokobrook/" class="social-btn" target="_blank">
-        <img src="https://emoji.discadia.com/emojis/e5c27b60-66ec-458a-9fc5-b231fce7e087.gif" alt="Instagram">
+      <a href="https://www.instagram.com/kimokobrook/" class="social-btn instagram-btn" target="_blank">
+        <img src="https://emoji.discadia.com/emojis/e5c27b60-66ec-458a-9fc5-b231fce7e087.gif" alt="Instagram" class="instagram-gif">
         Instagram @kimokobrook
       </a>
 
-      <a href="https://www.snapchat.com/add/kimokobrok" class="social-btn" target="_blank">
-        <img src="https://emoji.discadia.com/emojis/74d22eaf-b4da-47bb-9c4e-faa9ef90f54c.gif" alt="Snapchat">
+      <a href="https://www.snapchat.com/add/kimokobrok" class="social-btn snapchat-btn" target="_blank">
+        <img src="https://emoji.discadia.com/emojis/74d22eaf-b4da-47bb-9c4e-faa9ef90f54c.gif" alt="Snapchat" class="snapchat-gif">
         Snapchat @kimokobrok
       </a>
 
-      <a href="https://www.facebook.com/profile.php?id=61579778469062&name=xhp_nt__fb__action__open_user" class="social-btn" target="_blank">
-        <img src="https://emoji.discadia.com/emojis/da65d9de-187a-41f1-9e75-2ac9599f1b8a.gif" alt="Facebook">
+      <a href="https://www.facebook.com/profile.php?id=61579778469062&name=xhp_nt__fb__action__open_user" class="social-btn facebook-btn" target="_blank">
+        <img src="https://emoji.discadia.com/emojis/da65d9de-187a-41f1-9e75-2ac9599f1b8a.gif" alt="Facebook" class="facebook-gif">
         Facebook Kimoko Brok
       </a>
     </div>
